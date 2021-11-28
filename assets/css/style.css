@@ -1,3 +1,18 @@
+:root {
+  --primary: #c9c9c9;
+  --white: #ffffff;
+  --secondary: rgb(198, 218, 221);
+  --text: #040505;
+}
+
+body {
+   
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--primary);
+}
 
 .timer-text {
     display: flex;
@@ -9,15 +24,16 @@
   margin: 60px auto;
   text-align: center;
   font-size: 30px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.541);
   transition: 0.3s;
   width: 80vw;
-  background-color: #bdbdbd;
-  padding-top: 20px;
+  background-color: var(--white);
+  padding: 15px;
+  border-radius: 5px;
 }
 
 .main-primary-text {
-    margin: 30px;
+    margin: 20px;
 }
 
 .main-secondary-text {
@@ -25,10 +41,25 @@
     margin: 20px;
 }
 
-.start-button {
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    background: var(--secondary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    /* outline: none; */
+    font-weight: bolder;
+}
+
+.control-btn {
     background: radial-gradient(circle, rgb(198, 218, 221) 0%, rgba(143, 141, 139, 0.954) 100%);
     border-radius: 8px;
-    color: #090f14;
+    color: var(--text);
     cursor: pointer;
     font-size: 30px;
     letter-spacing: 0.21px;
@@ -41,3 +72,4 @@
     transition-timing-function: linear;
     margin-top: 0.6em;
 }
+

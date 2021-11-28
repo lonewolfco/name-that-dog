@@ -1,4 +1,4 @@
-var startButton = document.querySelector(".start-button");
+var startBtn = document.querySelector(".start-btn");
 var timerCount = document.querySelector(".timer-count");
 
 
@@ -19,7 +19,7 @@ var questions = [
     }
 ];
 
-startButton.addEventListener("click", startGame);
+startBtn.addEventListener("click", startGame);
 
 // startGame function beings when the start game button is clicked & triggers other functions
 function startGame() {
@@ -46,3 +46,6 @@ function countDown() {
 }
 
 
+function renderQuestion () {
+
+}
