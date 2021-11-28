@@ -1,0 +1,33 @@
+/* Resets the box size of every element */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+  }
+  
+  /* Gives the body element a parent height to compare against */
+  html {
+    height: 100%;
+  }
+  
+  body {
+    min-height: 16px;
+    line-height: 1;
+    font-family: sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    text-decoration: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /* Removes default bullet points from lists */
+  ol, ul {
+    list-style: none;
+  }
+  

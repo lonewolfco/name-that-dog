@@ -1,0 +1,43 @@
+
+.timer-text {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container {
+  display: block;
+  margin: 60px auto;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 80vw;
+  background-color: #bdbdbd;
+  padding-top: 20px;
+}
+
+.main-primary-text {
+    margin: 30px;
+}
+
+.main-secondary-text {
+    font-size: 15px;
+    margin: 20px;
+}
+
+.start-button {
+    background: radial-gradient(circle, rgb(198, 218, 221) 0%, rgba(143, 141, 139, 0.954) 100%);
+    border-radius: 8px;
+    color: #090f14;
+    cursor: pointer;
+    font-size: 30px;
+    letter-spacing: 0.21px;
+    line-height: 16px;
+    /* max-width: 255px; */
+    padding: 15px 40px;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+    margin-top: 0.6em;
+}
