@@ -93,12 +93,12 @@ function countDown() {
     timer = setInterval(function() {
 
         if (timeLeft > 0) {
-            timerCount.textContent = ": " + timeLeft + " Seconds";
+            timerCount.textContent = timeLeft + " Seconds";
             timeLeft --;
             // test if meets win condition & timerCount 
         } if (timeLeft === 0) {
             clearInterval(timer);
-            timerCount.textContent = ": " + timeLeft + "Seconds";
+            timerCount.textContent = timeLeft + " Seconds";
             // trigger loseGame();
             questionContainerEl.classList.add("hide");
             startButton.classList.remove("hide");
@@ -161,7 +161,7 @@ function answerQuestion (event) {
     } else {
         // if there are no questions remaning in array, stop the countDown, show the high scores submission, and turn the start button into a restart button
         form.classList.remove("hide");
-        startButton.innerText = ("Resart");
+        startButton.innerText = ("Restart");
         startButton.classList.remove("hide");
         clearInterval(timer);
 
