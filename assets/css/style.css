@@ -3,6 +3,8 @@
   --white: #ffffff;
   --secondary: rgb(198, 218, 221);
   --text: #040505;
+  --correct: #1e8a03d8;
+  --wrong: #8d2828dc;
 }
 
 body {
@@ -32,13 +34,13 @@ body {
   border-radius: 5px;
 }
 
-.main-primary-text {
+.instructions-text {
     margin: 20px;
 }
 
 .main-secondary-text {
     font-size: 15px;
-    margin: 20px;
+    margin-top: 10px;
 }
 
 .btn-grid {
@@ -51,9 +53,26 @@ body {
 .btn {
     background: var(--secondary);
     padding: 5px 10px;
+    border: 1px solid var(--secondary);
     border-radius: 5px;
-    /* outline: none; */
+    outline: none;
     font-weight: bolder;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.541);
+}
+
+.btn:hover {
+    border-color: var(--text);
+}
+
+.btn.correct {
+    background-color: var(--correct);
+    color: var(--white);
+}
+
+.btn.wrong {
+    background-color: var(--wrong);
+    color: var(--white);
+
 }
 
 .control-btn {
@@ -71,5 +90,9 @@ body {
     transition-property: background-color;
     transition-timing-function: linear;
     margin-top: 0.6em;
+}
+
+.hide {
+    display: none;
 }
 

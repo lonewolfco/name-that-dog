@@ -25,13 +25,18 @@
 
     <!-- main container -->
     <div class="container">
-        <h2 class ="main-primary-text">Let's Play..Name that Dog</h2>
-        <h4 class="main-secondary-text">You'll have 60 seconds to correctly name 10 dogs.<br>
-            Caution: For every incorrect answer, you will lose 10 seconds.</h4>
-        
+        <div class="instructions-text">
+            <h2 class ="main-primary-text">Let's Play..Name that Dog</h2>
+            <h4 class="main-secondary-text">You'll have 60 seconds to correctly name 10 dogs.<br>
+                Caution: For every incorrect answer, you will lose 10 seconds.</h4>
+        </div>
 
         <div id="question-container" class="hide">
-            <div id="question">Question</div>
+            <div id="question">
+                <img src="./assets/images/pug.jpeg" alt="photo of dog" width="300px" height="400px">
+            </div>
+            <!-- <h2> Name this Dog</h2> -->
+
             <div id="answer-btns" class="btn-grid">
                 <button class="btn">Answer 1</button>
                 <button class="btn">Answer 2</button>
@@ -41,8 +46,8 @@
         </div>
 
         <div class="controls">
-            <button class="control-btn">Let's Begin</button>
-            <button class="control-btn hide">Next</button>
+            <button id="start-btn" class="control-btn">Let's Begin</button>
+            <button id="next-btn" class="control-btn hide">Next</button>
         </div>
     </div>
 
