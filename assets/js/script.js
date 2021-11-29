@@ -1,3 +1,4 @@
+// declare variables calling out properties from HTML
 var startButton = document.querySelector("#start-btn");
 var nextButton = document.querySelector("#next-btn");
 var timerCount = document.querySelector(".timer-count");
@@ -5,17 +6,18 @@ var questionContainerEl = document.querySelector("#question-container");
 var questionEl = document.querySelector("#question");
 var answerButtonsEl = document.querySelector("#answer-btns");
 var instructions = document.querySelector(".instructions-text");
+var form = document.querySelector("#form");
 
 
 var timer;
 var timeLeft;
 
 var randomizeQuestions;
-var currentQuestionIndex;
+var questionPointer;
 
 var questions = [
     {
-        question: "Pug",
+        question: "What type of dog is the talking dog in Men in Black?",
         answers: [
             {text: "Shih Tzu", correct: false},
             {text: "Puggle", correct: false},
@@ -23,12 +25,52 @@ var questions = [
             {text: "Pug", correct: true},
         ],
         correct: "Pug",
+    },
+    {
+        question: "What type of dog is the UW Mascot?",
+        answers: [
+            {text: "Malamute", correct: false},
+            {text: "Siberian Husky", correct: true},
+            {text: "Pomsky", correct: false},
+            {text: "Tamaskan Wolf Dog", correct: false},
+        ],
+        correct: "Siberian Husky",
+    },
+    {
+        question: "What type of Dog is Scooby-Doo based off of?",
+        answers: [
+            {text: "Bloodhound", correct: false},
+            {text: "Pitbull", correct: false},
+            {text: "Great Dane", correct: true},
+            {text: "Mastiff", correct: false},
+        ],
+        correct: "Great Dane",
+    },
+    {
+        question: "What type of dog has the highest risk of cancer",
+        answers: [
+            {text: "Bloodhound", correct: false},
+            {text: "Irish Wolfhound", correct: false},
+            {text: "Golden Retriever", correct: true},
+            {text: "German Shepherd", correct: false},
+        ],
+        correct: "Golden Retriever",
+    },
+    {
+        question: "What type of dog was dubbed the Nanny Dog in the 1920s?",
+        answers: [
+            {text: "Beagle", correct: false},
+            {text: "Pitbull", correct: true},
+            {text: "Labrador Retriever", correct: false},
+            {text: "English Bulldog", correct: false},
+        ],
+        correct: "Pitbull",
     }
 ];
 
-var questionPointer = 0;
-
+// event listeners in place for when the start button is pressed & the next button is pressed
 startButton.addEventListener("click", startGame);
+nextButton.addEventListener("click", nextQuestion )
 
 // startGame function beings when the start game button is clicked & triggers other functions
 function startGame() {
@@ -37,6 +79,7 @@ function startGame() {
     instructions.classList.add("hide");
     questionContainerEl.classList.remove("hide");
     nextButton.classList.remove("hide");
+    form.classList.add("hide");
 
     alert("Get Ready...");
 
@@ -44,37 +87,40 @@ function startGame() {
     countDown ();
 
    randomizeQuestions = questions.sort(() => Math.random() - .5);
-    currentQuestionIndex = 0;
+    questionPointer = 0;
 
     setQuestion ();
 }
 
-// timer function 
+// timer function to countdown time remaining in the game
 function countDown() {
 
     timer = setInterval(function() {
 
-        if (timeLeft >= 1) {
+        if (timeLeft > 0) {
             timerCount.textContent = ": " + timeLeft + " Seconds";
             timeLeft --;
             // test if meets win condition & timerCount 
-        } if (timerCount === 0) {
+        } if (timeLeft === 0) {
             clearInterval(timer);
             // trigger loseGame();
         }
     }, 1000);
 }
 
-
+// function triggered after startGame function
+// function will call out the resetButton function and trigger the randomization of the questions being displayed
 function setQuestion () {
     resetButton ();
-    showQuestion(randomizeQuestions[currentQuestionIndex]);
+    showQuestion(randomizeQuestions[questionPointer]);
 
 }
 
+// function to display the correct question text in the question container
+// creates new buttons for each answer associated with each question
+// when one of the newly created answer buttons is pressed, the answerQuestion function is triggered
 function showQuestion(question) {
     questionEl.innerText = question.question;
-
     question.answers.forEach(answer => {
         var button = document.createElement("button");
         button.innerText = answer.text;
@@ -88,6 +134,7 @@ function showQuestion(question) {
 
 }
 
+// Once a question is displayed this function will hide the next button until one of the answer buttons is pressed.
 function resetButton () {
     nextButton.classList.add("hide");
     while (answerButtonsEl.firstChild) {
@@ -97,6 +144,8 @@ function resetButton () {
 
 }
 
+// This function looks to what the correct answer should be based on what has been pressed by the user
+// 
 function answerQuestion (event) {
     var buttonEl = event.target;
     var correct = buttonEl.dataset.correct;
@@ -105,13 +154,20 @@ function answerQuestion (event) {
         setCorrectAnswer(button, button.dataset.correct)
     })
 
-    // if (answer === questions [questionPointer].correct) {
-    //     buttonEl.classList.add("correct");
-    // } else {
-    //     buttonEl.classList.add("wrong");
-    // }
+    if (randomizeQuestions.length > questionPointer +1 ) {
+        console.log(timeLeft);
+        nextButton.classList.remove("hide");
+        console.log(timeLeft);
+    } else {
+        console.log(timeLeft);
+        form.classList.remove("hide");
+        startButton.innerText = ("Resart");
+        startButton.classList.remove("hide");
+        clearInterval(timer);
 
-    console.log(answer);
+    }
+
+    console.log(correct);
 }
 
 function setCorrectAnswer (element, correct) {
@@ -119,8 +175,10 @@ function setCorrectAnswer (element, correct) {
     if (correct) {
         element.classList.add("correct");
     } else {
+        console.log(timeLeft);
         element.classList.add("wrong");
-        timeLeft - 10;
+        timeLeft = timeLeft - 3;
+        console.log(timeLeft);
     }
 
 }
@@ -128,4 +186,10 @@ function setCorrectAnswer (element, correct) {
 function clearAnswer (element) {
     element.classList.remove("correct");
     element.classList.remove("wrong");
+
+}
+
+function nextQuestion () {
+   questionPointer++;
+   setQuestion ();
 }
