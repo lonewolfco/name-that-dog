@@ -15,11 +15,11 @@ body {
     height: 100vh;
     background: var(--primary);
 }
-
-.timer-text {
-    display: flex;
-    justify-content: flex-end;
+header {
+    display:flex;
+    justify-content: space-between;
 }
+
 
 .container {
   display: block;

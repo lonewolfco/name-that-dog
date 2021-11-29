@@ -24,7 +24,6 @@ var questions = [
             {text: "Yorkie", correct: false},
             {text: "Pug", correct: true},
         ],
-        correct: "Pug",
     },
     {
         question: "What type of dog is the UW Mascot?",
@@ -34,7 +33,6 @@ var questions = [
             {text: "Pomsky", correct: false},
             {text: "Tamaskan Wolf Dog", correct: false},
         ],
-        correct: "Siberian Husky",
     },
     {
         question: "What type of Dog is Scooby-Doo based off of?",
@@ -44,7 +42,6 @@ var questions = [
             {text: "Great Dane", correct: true},
             {text: "Mastiff", correct: false},
         ],
-        correct: "Great Dane",
     },
     {
         question: "What type of dog has the highest risk of cancer",
@@ -54,7 +51,6 @@ var questions = [
             {text: "Golden Retriever", correct: true},
             {text: "German Shepherd", correct: false},
         ],
-        correct: "Golden Retriever",
     },
     {
         question: "What type of dog was dubbed the Nanny Dog in the 1920s?",
@@ -64,7 +60,6 @@ var questions = [
             {text: "Labrador Retriever", correct: false},
             {text: "English Bulldog", correct: false},
         ],
-        correct: "Pitbull",
     }
 ];
 
@@ -103,7 +98,14 @@ function countDown() {
             // test if meets win condition & timerCount 
         } if (timeLeft === 0) {
             clearInterval(timer);
+            timerCount.textContent = ": " + timeLeft + "Seconds";
             // trigger loseGame();
+            questionContainerEl.classList.add("hide");
+            startButton.classList.remove("hide");
+            instructions.classList.remove("hide");
+            nextButton.classList.add("hide");
+
+            instructions.textContent=("Game Over - Try Again");
         }
     }, 1000);
 }
@@ -145,7 +147,7 @@ function resetButton () {
 }
 
 // This function looks to what the correct answer should be based on what has been pressed by the user
-// 
+// This function will prevent any questions being asked or the timer from continuing once all of the questions have been used. 
 function answerQuestion (event) {
     var buttonEl = event.target;
     var correct = buttonEl.dataset.correct;
@@ -153,43 +155,57 @@ function answerQuestion (event) {
     Array.from(answerButtonsEl.children).forEach(button => {
         setCorrectAnswer(button, button.dataset.correct)
     })
-
+// if there are questions still remaining, show the nextButton
     if (randomizeQuestions.length > questionPointer +1 ) {
-        console.log(timeLeft);
         nextButton.classList.remove("hide");
-        console.log(timeLeft);
     } else {
-        console.log(timeLeft);
+        // if there are no questions remaning in array, stop the countDown, show the high scores submission, and turn the start button into a restart button
         form.classList.remove("hide");
         startButton.innerText = ("Resart");
         startButton.classList.remove("hide");
         clearInterval(timer);
 
     }
-
     console.log(correct);
-}
-
-function setCorrectAnswer (element, correct) {
-    clearAnswer(element)
-    if (correct) {
-        element.classList.add("correct");
-    } else {
+// if the answer selected is NOT true, then deduct 10 seconds from countdown
+    if (!correct === true) {
         console.log(timeLeft);
-        element.classList.add("wrong");
-        timeLeft = timeLeft - 3;
+        timeLeft = timeLeft - 10;
         console.log(timeLeft);
     }
 
 }
 
+// function to adjust the coloring of buttons to show the correct and wrong answer colors
+function setCorrectAnswer (element, correct) {
+    clearAnswer(element)
+    if (correct) {
+        element.classList.add("correct");
+    } else {
+        element.classList.add("wrong");
+    }
+
+}
+
+// functiom to clear out the color styling on the buttons
 function clearAnswer (element) {
     element.classList.remove("correct");
     element.classList.remove("wrong");
 
 }
 
+// function to populate the nezt question & call out setQuestion function
 function nextQuestion () {
    questionPointer++;
    setQuestion ();
+}
+
+
+var userInitial = document.querySelector("#userinput.value");
+var submitScoreBtn = document.querySelector("#high-score-btn");
+
+submitScoreBtn.addEventListener("click", saveScore);
+
+function saveScore () {
+    localStorage.setItem("userInitialInput", JSON.stringify(userInitial));
 }
