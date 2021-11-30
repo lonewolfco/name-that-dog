@@ -1,9 +1,9 @@
 :root {
-  --primary: #c9c9c9;
-  --white: #ffffff;
+  --primary: #545F66;
+  --white: #829399;
   --secondary: rgb(198, 218, 221);
-  --text: #040505;
-  --correct: #1e8a03d8;
+  --text: #ffffffce;
+  --correct: #B1CC74;
   --wrong: #8d2828dc;
 }
 
@@ -18,6 +18,7 @@ body {
 header {
     display:flex;
     justify-content: space-between;
+    color: var(--text)
 }
 
 
@@ -26,7 +27,7 @@ header {
   margin: 60px auto;
   text-align: center;
   font-size: 30px;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.541);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   transition: 0.3s;
   width: 80vw;
   background-color: var(--white);
@@ -57,7 +58,7 @@ header {
     border-radius: 5px;
     outline: none;
     font-weight: bolder;
-    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.541);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .btn:hover {
@@ -66,19 +67,19 @@ header {
 
 .btn.correct {
     background-color: var(--correct);
-    color: var(--white);
+    color: #000000;
 }
 
 .btn.wrong {
     background-color: var(--wrong);
-    color: var(--white);
+    color: var(--text);
 
 }
 
 .control-btn {
     background: radial-gradient(circle, rgb(198, 218, 221) 0%, rgba(143, 141, 139, 0.954) 100%);
     border-radius: 8px;
-    color: var(--text);
+    color: #000000;
     cursor: pointer;
     font-size: 30px;
     letter-spacing: 0.21px;
@@ -90,6 +91,13 @@ header {
     transition-property: background-color;
     transition-timing-function: linear;
     margin-top: 0.6em;
+    margin-bottom: 0.6em;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#enter-score-text {
+    font-size: 22px;
+    margin-top: 0.5em;
 }
 
 .hide {

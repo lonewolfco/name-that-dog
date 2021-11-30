@@ -7,6 +7,7 @@ var questionEl = document.querySelector("#question");
 var answerButtonsEl = document.querySelector("#answer-btns");
 var instructions = document.querySelector(".instructions-text");
 var form = document.querySelector("#form");
+var scoreText = document.querySelector("#enter-score-text");
 
 
 var timer;
@@ -69,14 +70,11 @@ nextButton.addEventListener("click", nextQuestion )
 
 // startGame function beings when the start game button is clicked & triggers other functions
 function startGame() {
-    console.log("Start Game");
     startButton.classList.add("hide");
     instructions.classList.add("hide");
     questionContainerEl.classList.remove("hide");
     nextButton.classList.remove("hide");
     form.classList.add("hide");
-
-    alert("Get Ready...");
 
     timeLeft = 60;
     countDown ();
@@ -146,6 +144,7 @@ function resetButton () {
 
 }
 
+// This function creates buttons depending on the questions object length
 // This function looks to what the correct answer should be based on what has been pressed by the user
 // This function will prevent any questions being asked or the timer from continuing once all of the questions have been used. 
 function answerQuestion (event) {
@@ -160,10 +159,13 @@ function answerQuestion (event) {
         nextButton.classList.remove("hide");
     } else {
         // if there are no questions remaning in array, stop the countDown, show the high scores submission, and turn the start button into a restart button
+        var score = timeLeft +1;
         form.classList.remove("hide");
+        scoreText.innerText = ("Enter Initials to Save Score of " + score)
         startButton.innerText = ("Restart");
         startButton.classList.remove("hide");
         clearInterval(timer);
+        return score;
 
     }
     console.log(correct);
@@ -177,6 +179,7 @@ function answerQuestion (event) {
 }
 
 // function to adjust the coloring of buttons to show the correct and wrong answer colors
+// will know what class to add to which based on boolean of variable questions
 function setCorrectAnswer (element, correct) {
     clearAnswer(element)
     if (correct) {
