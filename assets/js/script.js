@@ -61,6 +61,24 @@ var questions = [
             {text: "Labrador Retriever", correct: false},
             {text: "English Bulldog", correct: false},
         ],
+    },
+    {
+        question: "Which is NOT a wolf in Game of Thrones",
+        answers: [
+            {text: "Shaggy", correct: true},
+            {text: "Summer", correct: false},
+            {text: "Nymeria", correct: false},
+            {text: "Ghost", correct: false},
+        ],
+    },
+    {
+        question: "Which dog is known for having webbed paws and primarily serving as rescue dogs on fisherman ships? ",
+        answers: [
+            {text: "German Shorthaird Pointer", correct: false},
+            {text: "Newfoundland", correct: true},
+            {text: "Labrador Retriever", correct: false},
+            {text: "German Shepherd", correct: false},
+        ],
     }
 ];
 
